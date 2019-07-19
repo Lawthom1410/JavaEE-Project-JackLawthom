@@ -3,6 +3,8 @@ package qa.com.JavaEE_Project_JackLawthom.persistence.repo;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -30,4 +32,17 @@ public class TournamentDBRepo {
 		return "Deletion Success";
 	}
 
+	@Transactional(value=TxType.REQUIRED)
+	public String updateTournament(long id, String tournament) {
+		Tournament newTournament = gson.convertJson(tournament, Tournament.class);
+		Query query = em.createQuery("UPDATE Tournament t "
+				+ "SET t = newTournament "
+				+ "WHERE t.tournamentId = id", Tournament.class);
+		return "Update Success";
+	}
+	
+	public String getAllTournaments() {
+		TypedQuery<Tournament> query = em.createQuery("SELECT t FROM Tournament t", Tournament.class);
+		return this.gson.getJson(query.getResultList());
+	}
 }

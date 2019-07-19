@@ -16,5 +16,13 @@ public class TournamentServiceImpl {
 	public String deleteTournament(long id) {
 		return this.repo.deleteTournament(id);
 	}
+	
+	public String updateTournament(long id, String tournament) {
+		return this.repo.updateTournament(id, tournament);
+	}
+	
+	public String getAllTournaments() {
+		return this.repo.getAllTournaments();
+	}
 
 }
