@@ -23,5 +23,11 @@ public class TournamentDBRepo {
 		this.em.persist(this.gson.convertJson(tournament, Tournament.class));
 		return "Creation Success";		
 	}
+	
+	@Transactional(value=TxType.REQUIRED)
+	public String deleteTournament(long id) {
+		this.em.remove(this.em.find(Tournament.class, id));
+		return "Deletion Success";
+	}
 
 }
