@@ -34,11 +34,17 @@ public class TournamentDBRepo {
 
 	@Transactional(value=TxType.REQUIRED)
 	public String updateTournament(long id, String tournament) {
+		Tournament oldTournament = this.em.find(Tournament.class, id);
 		Tournament newTournament = gson.convertJson(tournament, Tournament.class);
-		Query query = em.createQuery("UPDATE Tournament t "
-				+ "SET t = newTournament "
-				+ "WHERE t.tournamentId = id", Tournament.class);
+		
+		oldTournament.setTournamentName(newTournament.getTournamentName());
+		this.em.persist(oldTournament);
 		return "Update Success";
+		
+//		Query query = em.createQuery("UPDATE Tournament t "
+//				+ "SET t = newTournament "
+//				+ "WHERE t.tournamentId = id", Tournament.class);
+//		return "Update Success";
 	}
 	
 	public String getAllTournaments() {
