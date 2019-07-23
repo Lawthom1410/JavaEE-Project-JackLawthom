@@ -11,6 +11,7 @@ public class Match {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long matchId;
 	
+	private String roundLabel;
 	private String namePlayer1;
 	private String namePlayer2;
 	private int treeRow;
@@ -18,9 +19,10 @@ public class Match {
 	
 	private long tournamentId;
 
-	public Match(long matchId, String namePlayer1, String namePlayer2, int treeRow, int treeCol, long tournamentId) {
+	public Match(long matchId, String roundLabel, String namePlayer1, String namePlayer2, int treeRow, int treeCol, long tournamentId) {
 		super();
 		this.matchId = matchId;
+		this.roundLabel = roundLabel;
 		this.namePlayer1 = namePlayer1;
 		this.namePlayer2 = namePlayer2;
 		this.treeRow = treeRow;
@@ -38,6 +40,14 @@ public class Match {
 
 	public void setMatchId(long matchId) {
 		this.matchId = matchId;
+	}
+
+	public String getRoundLabel() {
+		return roundLabel;
+	}
+
+	public void setRoundLabel(String roundLabel) {
+		this.roundLabel = roundLabel;
 	}
 
 	public String getNamePlayer1() {
