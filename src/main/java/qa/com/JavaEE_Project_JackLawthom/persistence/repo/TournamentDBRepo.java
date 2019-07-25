@@ -31,6 +31,10 @@ public class TournamentDBRepo {
 	
 	@Transactional(value=TxType.REQUIRED)
 	public String deleteTournament(long id) {
+		TypedQuery<Match> query = em.createQuery("SELECT m FROM Match m WHERE m.tournamentId = '"+id+"'", Match.class);
+		for (Match match : query.getResultList()) {
+			this.em.remove(match);
+		}
 		this.em.remove(this.em.find(Tournament.class, id));
 		return "Deletion Success";
 	}
@@ -72,6 +76,7 @@ public class TournamentDBRepo {
 		Match oldMatch = this.em.find(Match.class, id);
 		Match newMatch = gson.convertJson(match, Match.class);
 		
+		oldMatch.setRoundLabel(newMatch.getRoundLabel());
 		oldMatch.setNamePlayer1(newMatch.getNamePlayer1());
 		oldMatch.setNamePlayer2(newMatch.getNamePlayer2());
 		oldMatch.setTreeRow(newMatch.getTreeRow());
@@ -85,4 +90,5 @@ public class TournamentDBRepo {
 		TypedQuery<Match> query = em.createQuery("SELECT m FROM Match m WHERE m.tournamentId = '"+id+"'", Match.class);
 		return this.gson.getJson(query.getResultList());
 	}
+	
 }
