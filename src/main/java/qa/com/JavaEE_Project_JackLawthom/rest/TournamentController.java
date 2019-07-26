@@ -29,7 +29,7 @@ public class TournamentController {
 	
 	@Path("/update/{id}")
 	@POST
-	public String updateTournament(@PathParam("id") long id, String tournament) {
+	public String updateTournament(@PathParam("id") Long id, String tournament) {
 		return this.service.updateTournament(id, tournament);
 	}
 	
@@ -37,6 +37,30 @@ public class TournamentController {
 	@GET
 	public String getAllTournaments() {
 		return this.service.getAllTournaments();
+	}
+	
+	@Path("/createMatch")
+	@POST
+	public String createMatch(String match) {
+		return this.service.createMatch(match);
+	}
+	
+	@Path("/deleteMatch/{id}")
+	@DELETE
+	public String deleteMatch(@PathParam("id") long id) {
+		return this.service.deleteMatch(id);
+	}
+	
+	@Path("/updateMatch/{id}")
+	@POST
+	public String updateMatch(@PathParam("id") Long id, String match) {
+		return this.service.updateMatch(id, match);
+	}
+	
+	@Path("/getTournamentMatches/{id}")
+	@GET
+	public String getTournamentMatches(@PathParam("id") Long id) {
+		return this.service.getTournamentMatches(id);
 	}
 
 }

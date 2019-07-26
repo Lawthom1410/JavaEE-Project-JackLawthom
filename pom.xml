@@ -7,12 +7,10 @@
   <version>1</version>
   <packaging>war</packaging>
 
-  <name>JavaEE-Project-JackLawthom</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <FailOnMissingWebXml> false </FailOnMissingWebXml>
+    <failOnMissingWebXml> false </failOnMissingWebXml>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
