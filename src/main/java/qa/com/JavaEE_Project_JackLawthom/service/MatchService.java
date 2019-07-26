@@ -1,6 +1,6 @@
-package qa.com.JavaEE_Project_JackLawthom.persistence.repo;
+package qa.com.JavaEE_Project_JackLawthom.service;
 
-public interface MatchRepo {
+public interface MatchService {
 	String createMatch(String match);
 	String deleteMatch(long id);
 	String updateMatch(long id, String match);

@@ -19,21 +19,18 @@ public class MatchDBRepo implements MatchRepo {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	@Override
 	@Transactional(value=TxType.REQUIRED)
-	public String createMatch(String match ) {
+	public String createMatch(String match) {
 		this.em.persist(this.gson.convertJson(match, Match.class));
 		return "Creation Success";	
 	}
 	
-	@Override
 	@Transactional(value=TxType.REQUIRED)
 	public String deleteMatch(long id) {
 		this.em.remove(this.em.find(Match.class, id));
 		return "Deletion Success";
 	}
 
-	@Override
 	@Transactional(value=TxType.REQUIRED)
 	public String updateMatch(long id, String match) {
 		Match oldMatch = this.em.find(Match.class, id);
@@ -49,7 +46,6 @@ public class MatchDBRepo implements MatchRepo {
 		return "Update Success";
 	}
 	
-	@Override
 	public String getTournamentMatches(long id) {
 		TypedQuery<Match> query = em.createQuery("SELECT m FROM Match m WHERE m.tournamentId = '"+id+"'", Match.class);
 		return this.gson.getJson(query.getResultList());

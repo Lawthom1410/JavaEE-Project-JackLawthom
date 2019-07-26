@@ -3,8 +3,9 @@ package qa.com.JavaEE_Project_JackLawthom.service;
 import javax.inject.Inject;
 
 import qa.com.JavaEE_Project_JackLawthom.persistence.repo.TournamentDBRepo;
+import qa.com.JavaEE_Project_JackLawthom.persistence.repo.TournamentRepo;
 
-public class TournamentServiceImpl {
+public class TournamentServiceImpl implements TournamentService {
 	
 	@Inject
 	private TournamentRepo repo;

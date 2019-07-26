@@ -20,14 +20,12 @@ public class TournamentDBRepo implements TournamentRepo {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	@Override
 	@Transactional(value=TxType.REQUIRED)
 	public String createTournament(String tournament) {
 		this.em.persist(this.gson.convertJson(tournament, Tournament.class));
 		return "Creation Success";		
 	}
 	
-	@Override
 	@Transactional(value=TxType.REQUIRED)
 	public String deleteTournament(long id) {
 		TypedQuery<Match> query = em.createQuery("SELECT m FROM Match m WHERE m.tournamentId = '"+id+"'", Match.class);
@@ -38,7 +36,6 @@ public class TournamentDBRepo implements TournamentRepo {
 		return "Deletion Success";
 	}
 
-	@Override
 	@Transactional(value=TxType.REQUIRED)
 	public String updateTournament(long id, String tournament) {
 		Tournament oldTournament = this.em.find(Tournament.class, id);
@@ -54,7 +51,6 @@ public class TournamentDBRepo implements TournamentRepo {
 //		return "Update Success";
 	}
 	
-	@Override
 	public String getAllTournaments() {
 		TypedQuery<Tournament> query = em.createQuery("SELECT t FROM Tournament t", Tournament.class);
 		return this.gson.getJson(query.getResultList());
