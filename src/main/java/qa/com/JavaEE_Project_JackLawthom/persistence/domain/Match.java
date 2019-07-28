@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Match {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long matchId;
+	private long matchId;
 	
 	private String roundLabel;
 	private String namePlayer1;

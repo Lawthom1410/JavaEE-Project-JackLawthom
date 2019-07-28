@@ -2,7 +2,6 @@ package qa.com.JavaEE_Project_JackLawthom.service;
 
 import javax.inject.Inject;
 
-import qa.com.JavaEE_Project_JackLawthom.persistence.repo.MatchDBRepo;
 import qa.com.JavaEE_Project_JackLawthom.persistence.repo.MatchRepo;
 
 public class MatchServiceImpl implements MatchService {
