@@ -1,11 +1,12 @@
 package qa.com.JavaEE_Project_JackLawthom.service;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 import qa.com.JavaEE_Project_JackLawthom.persistence.domain.User;
 import qa.com.JavaEE_Project_JackLawthom.persistence.repo.UserRepo;
 import qa.com.JavaEE_Project_JackLawthom.util.JSONUtil;
-
+@Default
 public class UserServiceImpl implements UserService {
 	
 	@Inject

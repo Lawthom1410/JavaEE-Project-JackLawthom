@@ -1,9 +1,10 @@
 package qa.com.JavaEE_Project_JackLawthom.service;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 import qa.com.JavaEE_Project_JackLawthom.persistence.repo.TournamentRepo;
-
+@Default
 public class TournamentServiceImpl implements TournamentService {
 	
 	@Inject
