@@ -9,14 +9,17 @@ import javax.persistence.Id;
 public class Tournament {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long tournamentId;
+	private long tournamentId;
 	
 	private String tournamentName;
+	
+	private long userId;
 
-	public Tournament(long tournamentId, String tournamentName) {
+	public Tournament(long tournamentId, String tournamentName, long userId) {
 		super();
 		this.tournamentId = tournamentId;
 		this.tournamentName = tournamentName;
+		this.userId = userId;
 	}
 	
 	public Tournament() {
@@ -38,6 +41,16 @@ public class Tournament {
 	public void setTournamentName(String tournamentName) {
 		this.tournamentName = tournamentName;
 	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
+	
 	
 	
 

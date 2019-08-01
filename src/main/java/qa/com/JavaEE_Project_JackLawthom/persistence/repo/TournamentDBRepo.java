@@ -42,6 +42,7 @@ public class TournamentDBRepo implements TournamentRepo {
 		Tournament newTournament = gson.convertJson(tournament, Tournament.class);
 		
 		oldTournament.setTournamentName(newTournament.getTournamentName());
+		oldTournament.setUserId(newTournament.getUserId());
 		this.em.persist(oldTournament);
 		return "Update Success";
 		
@@ -51,8 +52,8 @@ public class TournamentDBRepo implements TournamentRepo {
 //		return "Update Success";
 	}
 	
-	public String getAllTournaments() {
-		TypedQuery<Tournament> query = em.createQuery("SELECT t FROM Tournament t", Tournament.class);
+	public String getAllTournaments(long id) {
+		TypedQuery<Tournament> query = em.createQuery("SELECT t FROM Tournament t WHERE t.userId = '"+id+"'", Tournament.class);
 		return this.gson.getJson(query.getResultList());
 	}
 	

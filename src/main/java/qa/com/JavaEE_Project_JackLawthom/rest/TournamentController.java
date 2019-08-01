@@ -33,10 +33,10 @@ public class TournamentController {
 		return this.service.updateTournament(id, tournament);
 	}
 	
-	@Path("/getAll")
+	@Path("/getUserTournaments/{id}")
 	@GET
-	public String getAllTournaments() {
-		return this.service.getAllTournaments();
+	public String getAllTournaments(@PathParam("id") Long id) {
+		return this.service.getAllTournaments(id);
 	}
 
 }

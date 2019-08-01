@@ -4,5 +4,5 @@ public interface TournamentRepo {
 	String createTournament(String tournament);
 	String deleteTournament(long id);
 	String updateTournament(long id, String tournament);
-	String getAllTournaments();
+	String getAllTournaments(long id);
 }
