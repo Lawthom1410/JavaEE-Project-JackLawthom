@@ -1,5 +1,7 @@
 package qa.com.JavaEE_Project_JackLawthom.rest;
 
+import java.nio.channels.AcceptPendingException;
+
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -36,6 +38,9 @@ public class UserController {
 	@Path("/getAll")
 	@GET
 	public String getAllUsers() {
+		if (this.service == null) {
+			throw new AcceptPendingException();
+		}
 		return this.service.getAllUsers();
 	}
 	
