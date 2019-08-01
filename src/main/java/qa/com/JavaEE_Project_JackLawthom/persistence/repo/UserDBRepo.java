@@ -34,9 +34,10 @@ public class UserDBRepo implements UserRepo {
 			long tournamentId = tournament.getTournamentId();
 			TypedQuery<Match> matchQuery = em.createQuery("SELECT m FROM Match m WHERE m.tournamentId = '"+tournamentId+"'", Match.class);
 			for (Match match : matchQuery.getResultList()) {
-				this.em.remove(match);
+				long matchId = match.getMatchId();
+				this.em.remove(this.em.find(Match.class, matchId));
 			}
-			this.em.remove(this.em.find(Tournament.class, id));
+			this.em.remove(this.em.find(Tournament.class, tournamentId));
 		}
 		this.em.remove(this.em.find(User.class, id));
 		return "Deletion Success";
@@ -51,7 +52,6 @@ public class UserDBRepo implements UserRepo {
 		oldUser.setLastName(newUser.getLastName());
 		oldUser.setUsername(newUser.getUsername());
 		oldUser.setEmail(newUser.getEmail());
-		oldUser.setPassword(newUser.getPassword());
 		
 		this.em.persist(oldUser);
 		return "Update Success";
@@ -60,6 +60,22 @@ public class UserDBRepo implements UserRepo {
 	public String getAllUsers() {
 		TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
 		return this.gson.getJson(query.getResultList());
+	}
+	
+	@Transactional(value=TxType.REQUIRED)
+	public String getUserByUsername(String username) {
+		TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.username = '"+username+"'", User.class);
+		try {
+			return this.gson.getJson(query.getResultList().get(0));
+		} catch (Exception e) {
+			return "Invalid Username";
+		}
+	}
+	
+	@Transactional(value=TxType.REQUIRED)
+	public String getUserById(long id) {
+		TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.userId = '"+id+"'", User.class);
+		return this.gson.getJson(query.getResultList().get(0));
 	}
 	
 }

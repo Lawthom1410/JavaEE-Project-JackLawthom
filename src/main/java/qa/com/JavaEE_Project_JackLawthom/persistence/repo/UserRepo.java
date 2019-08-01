@@ -5,4 +5,6 @@ public interface UserRepo {
 	String deleteUser(long id);
 	String updateUser(long id, String user);
 	String getAllUsers();
+	String getUserByUsername(String username);
+	String getUserById(long id);
 }

@@ -5,4 +5,6 @@ public interface UserService {
 	String deleteUser(long id);
 	String updateUser(long id, String user);
 	String getAllUsers();
+	String login(String username, String password);
+	String getUserById(long id);
 }

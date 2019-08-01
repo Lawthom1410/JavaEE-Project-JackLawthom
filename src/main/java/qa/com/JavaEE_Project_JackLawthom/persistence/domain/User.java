@@ -1,5 +1,6 @@
 package qa.com.JavaEE_Project_JackLawthom.persistence.domain;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
